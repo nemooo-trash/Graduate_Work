@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'RRIT',
     'users',
     'Incidents',
+    'leaflet',
+
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -80,8 +83,12 @@ WSGI_APPLICATION = 'Graduation_Work_With_Django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'RRIT',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PASSWORD': 'postgres',
+        'PORT': '5432'
     }
 }
 
@@ -126,3 +133,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (-0.23, 36.87),
+    'DEFAULT_ZOOM': 5,
+    'ATTRIBUTION_PREFIX': 'Отслеживание происшествий ОАО «РЖД»'
+}
